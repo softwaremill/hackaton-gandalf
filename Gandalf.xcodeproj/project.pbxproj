@@ -214,6 +214,13 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = SoftwareMill;
 				TargetAttributes = {
+					8EE014EA18A4E2AA001EA5E1 = {
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
 					8EE0150E18A4E2AA001EA5E1 = {
 						TestTargetID = 8EE014EA18A4E2AA001EA5E1;
 					};
@@ -486,6 +493,7 @@
 				8EE0152218A4E2AA001EA5E1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8EE0152318A4E2AA001EA5E1 /* Build configuration list for PBXNativeTarget "GandalfTests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +502,7 @@
 				8EE0152518A4E2AA001EA5E1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

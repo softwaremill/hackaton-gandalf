@@ -32,7 +32,11 @@
 
     self.region = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:@"com.softwaremill.gandalf"];
 
-    [self.locationManager startMonitoringForRegion:self.region];
+    self.region.notifyEntryStateOnDisplay = YES;
+
+    [self.locationManager startMonitoringForRegion:_region];
+
+    [self.locationManager requestStateForRegion:_region];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,6 +52,16 @@
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
     [self.label setText:@"out region"];
     NSLog(@"out region");
+}
+
+- (void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region {
+    NSLog(@"Determined state %d for region %@", state, region);
+
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.alertBody = [NSString stringWithFormat:@"Region change %d", state];
+    notification.soundName = UILocalNotificationDefaultSoundName;
+
+    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
 }
 
 
