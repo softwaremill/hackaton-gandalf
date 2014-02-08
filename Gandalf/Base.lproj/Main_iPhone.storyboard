@@ -23,10 +23,10 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="gl3-FQ-bnq" kind="push" id="p9Q-H2-ba6"/>
+                                    <segue destination="gl3-FQ-bnq" kind="push" identifier="showImage" id="p9Q-H2-ba6"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hello k..a" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJq-f7-hjR">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Region not found" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJq-f7-hjR">
                                 <rect key="frame" x="38" y="75" width="234" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -49,42 +49,68 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NTy-6b-k65">
-                                <rect key="frame" x="20" y="110" width="280" height="393"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SwT-s0-VrU">
+                                <rect key="frame" x="28" y="154" width="244" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7s-hS-fcV">
+                                <rect key="frame" x="28" y="203" width="244" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ujo-Pk-Ay3">
+                                <rect key="frame" x="28" y="245" width="244" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="5Mw-5C-D0X"/>
                     <connections>
-                        <outlet property="image" destination="NTy-6b-k65" id="6bA-lT-Uat"/>
                         <outlet property="input" destination="w8i-Md-ML7" id="5c9-ON-5rg"/>
+                        <outlet property="jarek" destination="SwT-s0-VrU" id="18v-09-1mG"/>
+                        <outlet property="jasiek" destination="e7s-hS-fcV" id="N5I-jK-R8n"/>
                         <outlet property="label" destination="zJq-f7-hjR" id="OLn-L6-HME"/>
+                        <outlet property="pawel" destination="Ujo-Pk-Ay3" id="eXK-b6-e5q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="777" y="598"/>
+            <point key="canvasLocation" x="747" y="572"/>
         </scene>
-        <!--View Controller-->
+        <!--Image View Controller-->
         <scene sceneID="l1A-HO-EWv">
             <objects>
-                <viewController id="gl3-FQ-bnq" sceneMemberID="viewController">
+                <viewController restorationIdentifier="imageController" storyboardIdentifier="imageController" id="gl3-FQ-bnq" customClass="ImageViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="t3O-3j-eJN"/>
                         <viewControllerLayoutGuide type="bottom" id="FhM-b1-d3n"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="YEw-UA-qKK">
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="imageController" id="YEw-UA-qKK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oCy-Bt-OqH">
+                                <rect key="frame" x="-5" y="63" width="325" height="505"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="4sS-Ev-FIE"/>
+                    <connections>
+                        <outlet property="image" destination="oCy-Bt-OqH" id="qEv-ZK-5JR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0xD-H7-Hlu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1372" y="540"/>
+            <point key="canvasLocation" x="1284" y="580"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1iD-39-rpm">

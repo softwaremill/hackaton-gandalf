@@ -25,6 +25,7 @@
 		8EE0152818A4E4B6001EA5E1 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EE0152718A4E4B6001EA5E1 /* CoreBluetooth.framework */; };
 		8EE0152A18A4E4BC001EA5E1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EE0152918A4E4BC001EA5E1 /* CoreLocation.framework */; };
 		8EE0152C18A4E4C8001EA5E1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EE0152B18A4E4C8001EA5E1 /* SystemConfiguration.framework */; };
+		8EE0152F18A53B04001EA5E1 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EE0152E18A53B04001EA5E1 /* ImageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,8 @@
 		8EE0152718A4E4B6001EA5E1 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		8EE0152918A4E4BC001EA5E1 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		8EE0152B18A4E4C8001EA5E1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		8EE0152D18A53B03001EA5E1 /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
+		8EE0152E18A53B04001EA5E1 /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +137,8 @@
 				8EE0150718A4E2AA001EA5E1 /* ViewController.m */,
 				8EE0150918A4E2AA001EA5E1 /* Images.xcassets */,
 				8EE014F518A4E2AA001EA5E1 /* Supporting Files */,
+				8EE0152D18A53B03001EA5E1 /* ImageViewController.h */,
+				8EE0152E18A53B04001EA5E1 /* ImageViewController.m */,
 			);
 			path = Gandalf;
 			sourceTree = "<group>";
@@ -274,6 +279,7 @@
 			files = (
 				8EE0150818A4E2AA001EA5E1 /* ViewController.m in Sources */,
 				8EE014FF18A4E2AA001EA5E1 /* AppDelegate.m in Sources */,
+				8EE0152F18A53B04001EA5E1 /* ImageViewController.m in Sources */,
 				8EE014FB18A4E2AA001EA5E1 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

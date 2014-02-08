@@ -7,17 +7,26 @@
 //
 
 #import "ViewController.h"
+#import "ImageViewController.h"
 
 @interface ViewController ()
-@property(weak, nonatomic) IBOutlet UIImageView *image;
 @property(weak, nonatomic) IBOutlet UILabel *label;
 @property(weak, nonatomic) IBOutlet UITextField *input;
 @property(strong, nonatomic) CLBeaconRegion *region;
 @property(strong, nonatomic) CLLocationManager *locationManager;
 @property(strong, nonatomic) NSNumber *currentMajor;
+@property(strong, nonatomic) NSUUID *uuid;
+@property(weak, nonatomic) IBOutlet UILabel *jarek;
+@property(weak, nonatomic) IBOutlet UILabel *jasiek;
+@property(weak, nonatomic) IBOutlet UILabel *pawel;
+@property(strong, nonatomic) NSDictionary *labelsFromMajors;
+@property(strong, nonatomic) ImageViewController *imageViewController;
+@property(strong, nonatomic) UIImage *imageToShow;
 @end
 
 @implementation ViewController
+
+static CLBeaconMajorValue MAJORS[] = {2784, 5728, 17819};
 
 - (IBAction)onClick:(id)sender {
     [self.label setText:self.input.text];
@@ -25,37 +34,39 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    _uuid = [[NSUUID alloc] initWithUUIDString:ESTIMOTE_BEACON];
+
+    _labelsFromMajors = @{@"2784" : _pawel, @"5728" : _jarek, @"17819" : _jasiek};
+
     // Do any additional setup after loading the view, typically from a nib.
 
     self.locationManager = [CLLocationManager new];
     self.locationManager.delegate = self;
 
-    NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:ESTIMOTE_BEACON];
 
-    _region = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:@"com.softwaremill.gandalf"];
+    _region = [[CLBeaconRegion alloc] initWithProximityUUID:_uuid identifier:@"com.softwaremill.gandalf"];
     _region.notifyEntryStateOnDisplay = YES;
-
-    CLBeaconRegion *region1 = [[CLBeaconRegion alloc] initWithProximityUUID:uuid major:2784 identifier:@"com.softwaremill.gandalf1"];
-    region1.notifyEntryStateOnDisplay = YES;
-
-    CLBeaconRegion *region2 = [[CLBeaconRegion alloc] initWithProximityUUID:uuid major:5728 identifier:@"com.softwaremill.gandalf2"];
-    region2.notifyEntryStateOnDisplay = YES;
-
-    CLBeaconRegion *region3 = [[CLBeaconRegion alloc] initWithProximityUUID:uuid major:17819 identifier:@"com.softwaremill.gandalf2"];
-    region3.notifyEntryStateOnDisplay = YES;
 
     [self.locationManager startMonitoringForRegion:_region];
     [self.locationManager requestStateForRegion:_region];
 
+    for (int j = 0; j < sizeof(MAJORS) / sizeof(CLBeaconMajorValue); j++) {
+        NSLog(@"using major %d", MAJORS[j]);
+        [self initRegion:MAJORS[j]];
+    }
+
+    [_jarek setText:@"Jarek not found"];
+    [_jasiek setText:@"Jasiek not found"];
+    [_pawel setText:@"Pawel not found"];
+}
+
+- (void)initRegion:(CLBeaconMajorValue)major {
+    CLBeaconRegion *region1 = [[CLBeaconRegion alloc] initWithProximityUUID:_uuid major:major identifier:@"com.softwaremill.gandalf1"];
+    region1.notifyEntryStateOnDisplay = YES;
+
     [self.locationManager startMonitoringForRegion:region1];
     [self.locationManager requestStateForRegion:region1];
-
-    [self.locationManager startMonitoringForRegion:region2];
-    [self.locationManager requestStateForRegion:region2];
-
-    [self.locationManager startMonitoringForRegion:region3];
-    [self.locationManager requestStateForRegion:region3];
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -126,24 +137,34 @@
         NSArray *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
 
         NSLog(@"Got json: %@", json);
-        NSLog(@"Got name: %@", [json valueForKey:@"name"]);
+        NSObject *guyName = [json valueForKey:@"name"];
+
+        NSLog(@"Got name: %@", guyName);
 
         UILocalNotification *notification = [[UILocalNotification alloc] init];
-        notification.alertBody = [NSString stringWithFormat:@"Found %@ near by! Watch out.", [json valueForKey:@"name"]];
+        notification.alertBody = [NSString stringWithFormat:@"Found %@ near by! Watch out.", guyName];
         notification.soundName = UILocalNotificationDefaultSoundName;
 
         [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
 
         NSData *imageData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[json valueForKey:@"pic"]]];
-        UIImage *image = [UIImage imageWithData:imageData];
+        _imageToShow = [UIImage imageWithData:imageData];
 
-        [_image setImage:image];
+        [self performSegueWithIdentifier:@"showImage" sender:self];
+        
+        [[_labelsFromMajors valueForKey:[NSString stringWithFormat:@"%@", major]] 
+                setText:[NSString stringWithFormat:@"%@ found!", guyName]];
     }
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    ImageViewController *imageView = (ImageViewController*)segue.destinationViewController;
+    [imageView setPicture: _imageToShow];
+}
+
+
 - (void)clearImage {
-    [_image setImage: nil];
-    [_label setText: @""];
+    [_label setText:@""];
 }
 
 
