@@ -169,7 +169,7 @@ static CLBeaconMajorValue MAJORS[] = {2784, 5728, 17819};
 
 
 - (void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region {
-    NSLog(@"Determined state %d for region %@", state, region);
+    NSLog(@"Determined state %ld for region %@", (long)state, region);
 }
 
 
